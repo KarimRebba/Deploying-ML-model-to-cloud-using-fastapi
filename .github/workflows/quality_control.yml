@@ -38,3 +38,13 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+  deploy:
+  
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Deploy
+      run: |
+        # Deploying step
