@@ -3,6 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from starter.ml.data import process_data
 from pathlib import Path
 
+
 def train_model(X_train, y_train):
     """
     Trains a machine learning model and returns it.
@@ -21,6 +22,7 @@ def train_model(X_train, y_train):
     rfc = RandomForestClassifier(n_estimators=100, random_state=42)
     rfc.fit(X_train, y_train)
     return rfc
+
 
 def compute_model_metrics(y, preds):
     """
@@ -46,7 +48,7 @@ def compute_model_metrics(y, preds):
 
 
 def inference(model, X):
-    """ Run model inferences and return the predictions.
+    """Run model inferences and return the predictions.
 
     Inputs
     ------
@@ -62,9 +64,16 @@ def inference(model, X):
     preds = model.predict(X)
     return preds
 
-def compute_slice_metrics(model, df, categorical_features, label,
-                        encoder, lb, output_path=
-                        Path(__file__).resolve().parents[1] /"slice_output.txt"):
+
+def compute_slice_metrics(
+    model,
+    df,
+    categorical_features,
+    label,
+    encoder,
+    lb,
+    output_path=Path(__file__).resolve().parents[1] / "slice_output.txt",
+):
     """Compute precision, recall and F-beta for every value of each
     categorical feature and write the results in a file.
     Inputs
@@ -101,14 +110,16 @@ def compute_slice_metrics(model, df, categorical_features, label,
             )
             preds = inference(model, X_slice)
             precision, recall, fbeta = compute_model_metrics(y_slice, preds)
-            results.append({
-                "feature": feature,
-                "value": value,
-                "n": len(slice_df),
-                "precision": precision,
-                "recall": recall,
-                "fbeta": fbeta,
-            })
+            results.append(
+                {
+                    "feature": feature,
+                    "value": value,
+                    "n": len(slice_df),
+                    "precision": precision,
+                    "recall": recall,
+                    "fbeta": fbeta,
+                }
+            )
 
     with open(output_path, "w") as f:
         for result in results:

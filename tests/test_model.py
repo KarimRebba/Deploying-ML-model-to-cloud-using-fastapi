@@ -11,11 +11,13 @@ from starter.ml.data import process_data
 
 
 def test_process_data():
-    data = pd.DataFrame({
-        "age": [25, 30, 40],
-        "workclass": ["Private", "Government", "Private"],
-        "salary": ["<=50K", ">50K", "<=50K"],
-    })
+    data = pd.DataFrame(
+        {
+            "age": [25, 30, 40],
+            "workclass": ["Private", "Government", "Private"],
+            "salary": ["<=50K", ">50K", "<=50K"],
+        }
+    )
 
     X, y, encoder, lb = process_data(
         data,
@@ -31,17 +33,20 @@ def test_process_data():
 
 
 def test_train_model():
-    X = np.array([
-        [20, 0],
-        [30, 1],
-        [40, 0],
-        [50, 1],
-    ])
+    X = np.array(
+        [
+            [20, 0],
+            [30, 1],
+            [40, 0],
+            [50, 1],
+        ]
+    )
     y = np.array([0, 0, 1, 1])
 
     model = train_model(X, y)
 
     assert isinstance(model, RandomForestClassifier)
+
 
 def test_compute_model_metrics():
     y = np.array([1, 0, 1, 1])
@@ -53,18 +58,19 @@ def test_compute_model_metrics():
     assert np.isclose(recall, 2 / 3)
     assert np.isclose(fbeta, 0.8)
 
+
 def test_inference():
-    X = np.array([
-        [20, 0],
-        [30, 1],
-        [40, 0],
-        [50, 1],
-    ])
+    X = np.array(
+        [
+            [20, 0],
+            [30, 1],
+            [40, 0],
+            [50, 1],
+        ]
+    )
     y = np.array([0, 0, 1, 1])
 
     model = train_model(X, y)
     preds = inference(model, X)
 
     assert len(preds) == len(y)
-
-

@@ -12,7 +12,7 @@ from starter.ml.model import (
     train_model,
     compute_slice_metrics,
     inference,
-    compute_model_metrics
+    compute_model_metrics,
 )
 import joblib
 
@@ -42,16 +42,19 @@ X_train, y_train, encoder, lb = process_data(
 )
 
 X_test, y_test, _, _ = process_data(
-    test, categorical_features=cat_features, label="salary",
-    training=False, encoder=encoder, lb=lb,
+    test,
+    categorical_features=cat_features,
+    label="salary",
+    training=False,
+    encoder=encoder,
+    lb=lb,
 )
 
 # Train model and evaluate model
 model = train_model(X_train, y_train)
 preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)
-print(f"Test precision={precision:.4f}, recall={recall:.4f}, "
-      f"fbeta={fbeta:.4f}")
+print(f"Test precision={precision:.4f}, recall={recall:.4f}, " f"fbeta={fbeta:.4f}")
 
 compute_slice_metrics(model, test, cat_features, "salary", encoder, lb)
 
