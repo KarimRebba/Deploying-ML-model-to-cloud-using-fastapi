@@ -6,6 +6,7 @@ from main import app
 
 client = TestClient(app)
 
+
 def test_get_root():
     """
     Test get endpoint by checking the status code and the greeting message

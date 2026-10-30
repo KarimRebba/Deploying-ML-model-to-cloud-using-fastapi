@@ -13,8 +13,8 @@ from starter.ml.model import (
     compute_slice_metrics,
     inference,
     compute_model_metrics,
+    save_model,
 )
-import joblib
 
 # Load the clean data from the project root.
 
@@ -59,6 +59,6 @@ print(f"Test precision={precision:.4f}, recall={recall:.4f}, " f"fbeta={fbeta:.4
 compute_slice_metrics(model, test, cat_features, "salary", encoder, lb)
 
 # Save artifacts
-joblib.dump(encoder, MODEL_DIR / "encoder.joblib")
-joblib.dump(lb, MODEL_DIR / "label_binarizer.joblib")
-joblib.dump(model, MODEL_DIR / "rfc_model.joblib")
+save_model(encoder, MODEL_DIR / "encoder.joblib")
+save_model(lb, MODEL_DIR / "label_binarizer.joblib")
+save_model(model, MODEL_DIR / "rfc_model.joblib")
