@@ -33,9 +33,9 @@ The model is tested on the high income class (>50K) with precision, recall and F
 
 | Metric |	Test set |
 |--------|-----------|
-| Precision |	0.7622 |
+| Precision |	0.7419 |
 | Recall |	0.6384 |
-| F1	| 0.6948 |
+| F1	| 0.6863 |
 
 The model is fairly precise predicting >50K category, but it misses about 36% of actual high earners.
 
@@ -43,8 +43,8 @@ The model is fairly precise predicting >50K category, but it misses about 36% of
 
 - Key observations:
 
-    * Sex: recall is lower for women (0.524, F1 0.618) than for men (0.658, F1 0.707).
-    * Education: performance is strong for Masters (F1 0.850), Doctorate (F1 0.881) and Prof-school (F1 0.894). It is weak for HS-grad (F1 0.505), 10th (F1 0.267) and 7th-8th (recall/F1 0.0).
+    * Sex: recall is lower for women (0.515, F1 0.602) than for men (0.660, F1 0.700).
+    * Education: performance is strong for Masters (F1 0.841), Doctorate (F1 0.879) and Prof-school (F1 0.885). It is weak for HS-grad (F1 0.5261), 10th (F1 0.235) and 7th-8th (recall/F1 0.0).
     * Small slices: many native-country values have fewer than 15 samples. Their metrics are extreme, usually either 0.0 or 1.0 and *are not statistically meaningful*.
 
 ## Ethical Considerations
