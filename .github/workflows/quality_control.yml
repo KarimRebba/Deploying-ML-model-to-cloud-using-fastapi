@@ -50,4 +50,4 @@ jobs:
     - uses: actions/checkout@v4
     - name: Deploy
       run: |
-        # Deploying step
+        curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
